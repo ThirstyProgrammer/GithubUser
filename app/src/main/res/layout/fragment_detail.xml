@@ -24,11 +24,22 @@
                 app:layout_collapseMode="pin"
                 app:layout_collapseParallaxMultiplier="0">
 
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_16"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="@color/color_primary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_arrow_back" />
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_item_photo"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    android:layout_margin="16dp"
+                    android:layout_margin="@dimen/margin_16"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +58,7 @@
                         android:id="@+id/tv_name"
                         style="@style/TextStyle.Title"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="@dimen/margin_8"
                         android:layout_toStartOf="@id/btn_share"
                         tools:text="Jake Wharton" />
 
@@ -57,9 +68,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/margin_8"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:padding="4dp"
+                        android:padding="@dimen/margin_4"
                         android:src="@drawable/ic_share" />
                 </RelativeLayout>
 
@@ -151,6 +162,7 @@
                     style="@style/Layout.Horizontal"
                     android:layout_marginHorizontal="@dimen/margin_16"
                     android:layout_marginTop="8dp"
+                    android:paddingBottom="@dimen/margin_16"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
@@ -179,6 +191,39 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:navigationIcon="@drawable/ic_arrow_back"
                 app:titleTextColor="@color/color_primary" />
+
+            <RelativeLayout
+                android:id="@+id/container_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/color_primary"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_back_toolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_arrow_back" />
+
+                <TextView
+                    android:id="@+id/tv_title_toolbar"
+                    style="@style/TextStyle.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:layout_toEndOf="@id/btn_back_toolbar"
+                    android:textColor="@android:color/white"
+                    tools:text="Jake Wharton" />
+            </RelativeLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -192,17 +237,14 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_8"
             android:background="?attr/colorPrimary"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
-            app:tabTextColor="@android:color/white"
-            tools:layout_editor_absoluteX="16dp" />
+            app:tabTextColor="@android:color/white" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/tab_layout"
-            tools:layout_editor_absoluteX="16dp" />
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

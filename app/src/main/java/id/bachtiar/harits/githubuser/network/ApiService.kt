@@ -1,9 +1,8 @@
 package id.bachtiar.harits.githubuser.network
 
+import id.bachtiar.harits.githubuser.model.SearchResult
 import id.bachtiar.harits.githubuser.model.User
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Url
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -15,6 +14,12 @@ interface ApiService {
     suspend fun getUsers(
         @Header(AUTHORIZATION) value: String,
     ): List<User>
+
+    @GET("search/users")
+    suspend fun getSearchUsers(
+        @Header(AUTHORIZATION) value: String,
+        @Query("q") username:String
+    ): SearchResult
 
     @GET
     suspend fun getUserDetail(

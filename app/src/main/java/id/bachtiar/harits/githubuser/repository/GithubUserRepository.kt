@@ -13,6 +13,9 @@ class GithubUserRepository {
     suspend fun getUsers() = service.getUsers(Constant.API_KEY)
 
     @ExperimentalSerializationApi
+    suspend fun getSearchUsers(username: String) = service.getSearchUsers(Constant.API_KEY, username).items
+
+    @ExperimentalSerializationApi
     suspend fun getUserDetail(url: String) = service.getUserDetail(Constant.API_KEY, url)
 
     @ExperimentalSerializationApi

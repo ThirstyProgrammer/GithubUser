@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.bachtiar.harits.githubuser.databinding.FragmentListBinding
-import id.bachtiar.harits.githubuser.ui.detail.DetailFragment
 import id.bachtiar.harits.githubuser.model.User
-import id.bachtiar.harits.githubuser.network.ViewState
+import id.bachtiar.harits.githubuser.ui.detail.DetailFragment
 import id.bachtiar.harits.githubuser.util.Constant
+import id.bachtiar.harits.githubuser.widget.handleViewState
+import id.bachtiar.harits.githubuser.widget.setErrorMessage
+import id.bachtiar.harits.githubuser.widget.setOnRetakeClicked
 import kotlinx.serialization.ExperimentalSerializationApi
 
 class ListFragment : Fragment(), OnItemClickCallback {
@@ -44,56 +45,11 @@ class ListFragment : Fragment(), OnItemClickCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showRecyclerList()
-        setupViewState()
+        mBinding.viewState.setOnRetakeClicked {
+            mViewModel.getUsers()
+        }
         handleViewModelObserver()
         mViewModel.getUsers()
-    }
-
-    private fun handleViewModelObserver() {
-        mViewModel.users.observe(viewLifecycleOwner, {
-            userAdapter.setData(it)
-        })
-
-        mViewModel.viewState.observe(viewLifecycleOwner, {
-            handleViewState(it)
-        })
-
-        mViewModel.error.observe(viewLifecycleOwner, {
-            mBinding.tvErrorMessage.text = it.second
-        })
-    }
-
-    private fun handleViewState(state: ViewState) {
-        when (state) {
-            ViewState.LOADING -> {
-                mBinding.apply {
-                    viewState.visibility = View.VISIBLE
-                    containerError.visibility = View.GONE
-                    containerLoading.visibility = View.VISIBLE
-                }            }
-            ViewState.SUCCESS -> {
-                mBinding.apply {
-                    viewState.visibility = View.GONE
-                    containerError.visibility = View.GONE
-                    containerLoading.visibility = View.GONE
-                }            }
-            ViewState.ERROR -> {
-                mBinding.apply {
-                    viewState.visibility = View.VISIBLE
-                    containerError.visibility = View.VISIBLE
-                    containerLoading.visibility = View.GONE
-                }
-            }
-        }
-    }
-
-    @ExperimentalSerializationApi
-    private fun setupViewState() {
-        mBinding.apply {
-            btnRetake.setOnClickListener {
-                mViewModel.getUsers()
-            }
-        }
     }
 
     override fun onItemClicked(data: User) {
@@ -106,6 +62,26 @@ class ListFragment : Fragment(), OnItemClickCallback {
             addToBackStack(null)
             commit()
         }
+    }
+
+    @ExperimentalSerializationApi
+    fun getSearchUsername(username: String = "") {
+        mViewModel.username = username
+        mViewModel.getUsers()
+    }
+
+    private fun handleViewModelObserver() {
+        mViewModel.users.observe(viewLifecycleOwner, {
+            userAdapter.setData(it)
+        })
+
+        mViewModel.viewState.observe(viewLifecycleOwner, {
+            mBinding.viewState.handleViewState(it)
+        })
+
+        mViewModel.error.observe(viewLifecycleOwner, {
+            mBinding.viewState.setErrorMessage(it.second)
+        })
     }
 
     private fun showRecyclerList() {

@@ -9,16 +9,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import id.bachtiar.harits.githubuser.*
 import id.bachtiar.harits.githubuser.databinding.FragmentDetailBinding
 import id.bachtiar.harits.githubuser.model.User
 import id.bachtiar.harits.githubuser.ui.followers.FollowersFragment
 import id.bachtiar.harits.githubuser.ui.following.FollowingFragment
-import id.bachtiar.harits.githubuser.util.Constant
-import id.bachtiar.harits.githubuser.util.defaultDash
-import id.bachtiar.harits.githubuser.util.defaultEmpty
-import id.bachtiar.harits.githubuser.util.removeQueryParams
+import id.bachtiar.harits.githubuser.util.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import java.util.*
 
@@ -92,7 +90,27 @@ class DetailFragment : Fragment() {
     }
 
     private fun setupToolbarTitle() {
-        (requireActivity() as MainActivity).supportActionBar?.title = user.username
+        mBinding.appBar.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
+            override fun onStateChanged(appBarLayout: AppBarLayout, state: State) {
+                when (state) {
+                    State.EXPANDED -> {
+                        mBinding.containerToolbar.visibility = View.GONE
+                    }
+                    State.COLLAPSED -> {
+                        mBinding.containerToolbar.visibility = View.VISIBLE
+                    }
+                    else -> {
+                    }
+                }
+            }
+        })
+        mBinding.tvTitleToolbar.text = user.username
+        mBinding.btnBackToolbar.setOnClickListener {
+            (requireActivity() as MainActivity).popFragment()
+        }
+        mBinding.btnBack.setOnClickListener {
+            (requireActivity() as MainActivity).popFragment()
+        }
     }
 
     private fun setupView(user: User) {

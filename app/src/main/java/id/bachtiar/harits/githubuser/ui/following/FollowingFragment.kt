@@ -14,6 +14,9 @@ import id.bachtiar.harits.githubuser.network.ViewState
 import id.bachtiar.harits.githubuser.util.Constant
 import id.bachtiar.harits.githubuser.util.PaginationScrollListener
 import id.bachtiar.harits.githubuser.util.defaultEmpty
+import id.bachtiar.harits.githubuser.widget.handleViewState
+import id.bachtiar.harits.githubuser.widget.setErrorMessage
+import id.bachtiar.harits.githubuser.widget.setOnRetakeClicked
 import kotlinx.serialization.ExperimentalSerializationApi
 
 class FollowingFragment : Fragment() {
@@ -59,7 +62,9 @@ class FollowingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showRecyclerList()
-        setupViewState()
+        mBinding.viewState.setOnRetakeClicked {
+            mViewModel.getFollowing()
+        }
         handleViewModelObserver()
         mViewModel.getFollowing()
     }
@@ -74,45 +79,12 @@ class FollowingFragment : Fragment() {
         })
 
         mViewModel.viewState.observe(viewLifecycleOwner, {
-            handleViewState(it)
+            mBinding.viewState.handleViewState(it)
         })
 
         mViewModel.error.observe(viewLifecycleOwner, {
-            mBinding.tvErrorMessage.text = it.second
+            mBinding.viewState.setErrorMessage(it.second)
         })
-    }
-
-    private fun handleViewState(state: ViewState) {
-        when (state) {
-            ViewState.LOADING -> {
-                mBinding.apply {
-                    viewState.visibility = View.VISIBLE
-                    containerError.visibility = View.GONE
-                    containerLoading.visibility = View.VISIBLE
-                }            }
-            ViewState.SUCCESS -> {
-                mBinding.apply {
-                    viewState.visibility = View.GONE
-                    containerError.visibility = View.GONE
-                    containerLoading.visibility = View.GONE
-                }            }
-            ViewState.ERROR -> {
-                mBinding.apply {
-                    viewState.visibility = View.VISIBLE
-                    containerError.visibility = View.VISIBLE
-                    containerLoading.visibility = View.GONE
-                }
-            }
-        }
-    }
-
-    @ExperimentalSerializationApi
-    private fun setupViewState() {
-        mBinding.apply {
-            btnRetake.setOnClickListener {
-                mViewModel.getFollowing()
-            }
-        }
     }
 
     @ExperimentalSerializationApi
