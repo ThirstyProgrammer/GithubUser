@@ -10,14 +10,16 @@ object RetrofitFactory {
 
     private const val BASE_URL = "https://api.github.com"
 
+    private val json = Json {
+        ignoreUnknownKeys = true
+    }
+
     @ExperimentalSerializationApi
     fun makeRetrofitService(): ApiService {
         val contentType = "application/json".toMediaType()
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(Json {
-                ignoreUnknownKeys = true
-            }.asConverterFactory(contentType))
+            .addConverterFactory(json.asConverterFactory(contentType))
             .build()
             .create(ApiService::class.java)
     }

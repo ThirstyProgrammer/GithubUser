@@ -4,6 +4,7 @@ import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -59,9 +60,10 @@ class MainActivity : AppCompatActivity() {
             if (supportActionBar != null) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 supportActionBar?.setDisplayShowHomeEnabled(true)
-                binding.toolbar.setNavigationOnClickListener {
-                    popFragment()
-                }
+                binding.toolbar.visibility = View.GONE
+//                binding.toolbar.setNavigationOnClickListener {
+//                    popFragment()
+//                }
             }
         } else {
             if (supportActionBar != null) {

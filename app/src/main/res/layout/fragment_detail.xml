@@ -1,151 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:background="@android:color/white">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_item_photo"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/user1" />
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@android:color/white"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_collapseMode="pin"
+                app:layout_collapseParallaxMultiplier="0">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_item_photo"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/user1" />
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img_item_photo">
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        style="@style/TextStyle.Title"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_toStartOf="@id/btn_share"
+                        tools:text="Jake Wharton" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btn_share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_share" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    style="@style/Layout.Horizontal"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_follower"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_follower" />
+
+                    <TextView
+                        android:id="@+id/tv_follower"
+                        style="@style/TextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="8dp"
+                        tools:text="56995 followers" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_circle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        app:srcCompat="@drawable/ic_circle" />
+
+                    <TextView
+                        android:id="@+id/tv_following"
+                        style="@style/TextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="8dp"
+                        tools:text="12 following" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    style="@style/Layout.Horizontal"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_repository"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:srcCompat="@drawable/ic_repository" />
+
+                    <TextView
+                        android:id="@+id/tv_repository"
+                        style="@style/TextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="8dp"
+                        tools:text="102 repository" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    style="@style/Layout.Horizontal"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_location" />
+
+                    <TextView
+                        android:id="@+id/tv_location"
+                        style="@style/TextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="8dp"
+                        tools:text="Pittsburgh, PA, USA" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout5"
+                    style="@style/Layout.Horizontal"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_company" />
+
+                    <TextView
+                        android:id="@+id/tv_company"
+                        style="@style/TextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="8dp"
+                        tools:text="Google, Inc." />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:visibility="invisible"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:titleTextColor="@color/color_primary" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_item_photo">
+            android:layout_marginTop="@dimen/margin_8"
+            android:background="?attr/colorPrimary"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+            app:tabTextColor="@android:color/white"
+            tools:layout_editor_absoluteX="16dp" />
 
-            <TextView
-                android:id="@+id/tv_name"
-                style="@style/TextStyle.Title"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="8dp"
-                android:layout_toStartOf="@id/btn_share"
-                tools:text="Jake Wharton" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_share"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="8dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="4dp"
-                android:src="@drawable/ic_share" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            style="@style/Layout.Horizontal"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_follower"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_follower" />
-
-            <TextView
-                android:id="@+id/tv_follower"
-                style="@style/TextStyle"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="8dp"
-                tools:text="56995 followers" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_circle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                app:srcCompat="@drawable/ic_circle" />
-
-            <TextView
-                android:id="@+id/tv_following"
-                style="@style/TextStyle"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="8dp"
-                tools:text="12 following" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            style="@style/Layout.Horizontal"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_repository"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                app:srcCompat="@drawable/ic_repository" />
-
-            <TextView
-                android:id="@+id/tv_repository"
-                style="@style/TextStyle"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="8dp"
-                tools:text="102 repository" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            style="@style/Layout.Horizontal"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_location" />
-
-            <TextView
-                android:id="@+id/tv_location"
-                style="@style/TextStyle"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="8dp"
-                tools:text="Pittsburgh, PA, USA" />
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/Layout.Horizontal"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_company"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_company" />
-
-            <TextView
-                android:id="@+id/tv_company"
-                style="@style/TextStyle"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="8dp"
-                tools:text="Google, Inc." />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout"
+            tools:layout_editor_absoluteX="16dp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

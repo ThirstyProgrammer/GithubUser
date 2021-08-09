@@ -27,7 +27,7 @@
         tools:text="USERNAME" />
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_github_url"
         style="@style/TextStyle.Subtitle"
         android:layout_width="0dp"
         android:layout_marginStart="@dimen/margin_16"

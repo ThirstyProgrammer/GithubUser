@@ -1,4 +1,4 @@
-package id.bachtiar.harits.githubuser
+package id.bachtiar.harits.githubuser.util
 
 class Constant {
 
@@ -8,5 +8,6 @@ class Constant {
 
     object Extras {
         const val USER_DATA = "user_data"
+        const val URL = "url"
     }
 }
