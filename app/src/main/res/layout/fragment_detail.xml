@@ -246,6 +246,12 @@
                 app:tabIndicatorHeight="@dimen/margin_4"
                 app:tabTextColor="@color/color_primary_dark" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/tab_divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_4"
+                android:background="@drawable/bg_line_bottom_bar" />
+
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
