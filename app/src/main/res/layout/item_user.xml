@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_item_photo"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        tools:text="Nama" />
+        tools:text="github_url" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

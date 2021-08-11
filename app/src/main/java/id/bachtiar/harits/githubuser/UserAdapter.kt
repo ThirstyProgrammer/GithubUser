@@ -3,7 +3,6 @@ package id.bachtiar.harits.githubuser
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import id.bachtiar.harits.githubuser.databinding.ItemUserBinding
 import id.bachtiar.harits.githubuser.databinding.ItemUserShimmerBinding

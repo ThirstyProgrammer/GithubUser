@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.bachtiar.harits.githubuser.UserAdapter
 import id.bachtiar.harits.githubuser.databinding.FragmentListBinding
-import id.bachtiar.harits.githubuser.network.ViewState
 import id.bachtiar.harits.githubuser.util.Constant
 import id.bachtiar.harits.githubuser.util.PaginationScrollListener
 import id.bachtiar.harits.githubuser.util.defaultEmpty

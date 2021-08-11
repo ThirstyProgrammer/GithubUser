@@ -18,7 +18,6 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var mListFragment: ListFragment
     private val stack: Stack<Fragment> = Stack()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,12 +39,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListFragment() {
         val mFragmentManager = supportFragmentManager
-        mListFragment = ListFragment()
         val fragment = mFragmentManager.findFragmentByTag(ListFragment::class.java.simpleName)
 
         if (fragment !is ListFragment) {
             mFragmentManager.beginTransaction()
-                .add(R.id.frame_container, mListFragment, ListFragment::class.java.simpleName)
+                .add(R.id.frame_container, ListFragment(), ListFragment::class.java.simpleName)
                 .commit()
         }
     }
@@ -87,12 +85,14 @@ class MainActivity : AppCompatActivity() {
         searchEditText.setHintTextColor(ContextCompat.getColor(this, R.color.color_primary_light))
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                mListFragment.getSearchUsername(query.defaultEmpty())
+                val listFragment = supportFragmentManager.findFragmentById(R.id.frame_container) as ListFragment
+                listFragment.getSearchUsername(query.defaultEmpty())
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) mListFragment.getSearchUsername()
+                val listFragment = supportFragmentManager.findFragmentById(R.id.frame_container) as ListFragment
+                if (newText.isNullOrEmpty()) listFragment.getSearchUsername()
                 return false
             }
 

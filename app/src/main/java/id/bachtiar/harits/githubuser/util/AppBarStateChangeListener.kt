@@ -16,7 +16,7 @@ abstract class AppBarStateChangeListener : AppBarLayout.OnOffsetChangedListener 
 
     override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
         Log.d("VALUE", verticalOffset.toString())
-        Log.d("TOTALRANGE", appBarLayout!!.totalScrollRange.toString())
+        Log.d("TOTAL_RANGE", appBarLayout!!.totalScrollRange.toString())
         if (verticalOffset == 0) {
             if (mCurrentState != State.EXPANDED) {
                 onStateChanged(appBarLayout, State.EXPANDED)

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -41,8 +40,7 @@
                 android:background="@color/text_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_item_photo"
-                app:layout_constraintTop_toTopOf="@+id/guideline2"
-                tools:text="Nama" />
+                app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
@@ -89,8 +87,7 @@
                 android:background="@color/text_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_item_photo_2"
-                app:layout_constraintTop_toTopOf="@+id/guideline3"
-                tools:text="Nama" />
+                app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline3"
@@ -137,8 +134,7 @@
                 android:background="@color/text_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_item_photo_3"
-                app:layout_constraintTop_toTopOf="@+id/guideline4"
-                tools:text="Nama" />
+                app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline4"

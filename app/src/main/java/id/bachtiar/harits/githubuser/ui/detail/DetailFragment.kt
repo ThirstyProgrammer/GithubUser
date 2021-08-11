@@ -59,10 +59,12 @@ class DetailFragment : Fragment() {
     }
 
     private fun initViewPager(user: User) {
-        titlesViewPager.add(getString(R.string.tab_followers))
-        fragmentsViewPager.add(FollowersFragment.newInstance(user.followersUrl.defaultEmpty()))
-        titlesViewPager.add(getString(R.string.tab_following))
-        fragmentsViewPager.add(FollowingFragment.newInstance(user.followingUrl.removeQueryParams()))
+        if (titlesViewPager.isEmpty()){
+            titlesViewPager.add(getString(R.string.tab_followers))
+            fragmentsViewPager.add(FollowersFragment.newInstance(user.followersUrl.defaultEmpty()))
+            titlesViewPager.add(getString(R.string.tab_following))
+            fragmentsViewPager.add(FollowingFragment.newInstance(user.followingUrl.removeQueryParams()))
+        }
         val viewPagerAdapter = ViewPagerAdapter(childFragmentManager, lifecycle, fragmentsViewPager)
         mBinding.apply {
             viewPager.apply {
