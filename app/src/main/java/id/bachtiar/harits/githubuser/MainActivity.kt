@@ -37,6 +37,20 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onBackPressed() {
+        if (!stack.isEmpty()) {
+            stack.pop()
+            initListFragment()
+        } else super.onBackPressed()
+    }
+
+    fun popFragment() {
+        if (!stack.isEmpty()) {
+            stack.pop()
+            initListFragment()
+        } else super.onBackPressed()
+    }
+
     private fun initListFragment() {
         val mFragmentManager = supportFragmentManager
         val fragment = mFragmentManager.findFragmentByTag(ListFragment::class.java.simpleName)
@@ -85,24 +99,19 @@ class MainActivity : AppCompatActivity() {
         searchEditText.setHintTextColor(ContextCompat.getColor(this, R.color.color_primary_light))
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                val listFragment = supportFragmentManager.findFragmentById(R.id.frame_container) as ListFragment
+                val listFragment =
+                    supportFragmentManager.findFragmentById(R.id.frame_container) as ListFragment
                 listFragment.getSearchUsername(query.defaultEmpty())
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                val listFragment = supportFragmentManager.findFragmentById(R.id.frame_container) as ListFragment
+                val listFragment =
+                    supportFragmentManager.findFragmentById(R.id.frame_container) as ListFragment
                 if (newText.isNullOrEmpty()) listFragment.getSearchUsername()
                 return false
             }
 
         })
-    }
-
-    fun popFragment() {
-        if (!stack.isEmpty()) {
-            stack.pop()
-            initListFragment()
-        } else super.onBackPressed()
     }
 }
