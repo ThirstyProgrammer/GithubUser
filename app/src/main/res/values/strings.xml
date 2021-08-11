@@ -10,4 +10,7 @@
     <string name="tab_followers">Followers</string>
     <string name="tab_following">Following</string>
     <string name="retake">Retake</string>
+    <string name="empty_following">Doesn\'t follow anyone</string>
+    <string name="empty_follower">Have no followers</string>
+    <string name="empty_search_user">\"%1$s\" not found</string>
 </resources>

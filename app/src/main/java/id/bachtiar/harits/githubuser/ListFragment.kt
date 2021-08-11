@@ -73,6 +73,7 @@ class ListFragment : Fragment(), OnItemClickCallback {
     private fun handleViewModelObserver() {
         mViewModel.users.observe(viewLifecycleOwner, {
             userAdapter.setData(it)
+            emptyView(it.isEmpty())
         })
 
         mViewModel.viewState.observe(viewLifecycleOwner, {
@@ -98,8 +99,13 @@ class ListFragment : Fragment(), OnItemClickCallback {
                 adapter = userAdapter
                 addItemDecoration(dividerItemDecoration)
             }
+        }
+    }
 
-            tvEmptyMessage.text = "User not found"
+    private fun emptyView(isEmpty: Boolean) {
+        mBinding.apply {
+            tvEmptyMessage.text = getString(R.string.empty_search_user, mViewModel.username)
+            tvEmptyMessage.visibility = if (isEmpty) View.VISIBLE else View.GONE
         }
     }
 }

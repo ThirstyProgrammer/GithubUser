@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import id.bachtiar.harits.githubuser.R
 import id.bachtiar.harits.githubuser.UserAdapter
 import id.bachtiar.harits.githubuser.databinding.FragmentListBinding
 import id.bachtiar.harits.githubuser.util.Constant
@@ -117,7 +118,7 @@ class FollowersFragment : Fragment() {
                 })
             }
 
-            tvEmptyMessage.text = "Tidak ada follower"
+            tvEmptyMessage.text = getString(R.string.empty_follower)
         }
     }
 

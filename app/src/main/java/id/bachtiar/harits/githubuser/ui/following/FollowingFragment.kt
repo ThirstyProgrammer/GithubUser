@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import id.bachtiar.harits.githubuser.R
 import id.bachtiar.harits.githubuser.UserAdapter
 import id.bachtiar.harits.githubuser.databinding.FragmentListBinding
 import id.bachtiar.harits.githubuser.util.Constant
@@ -73,6 +74,7 @@ class FollowingFragment : Fragment() {
             isLoading = false
             mViewModel.updatedFollowing.addAll(it)
             userAdapter.updateData(mViewModel.updatedFollowing)
+            emptyView(mViewModel.updatedFollowing.isEmpty())
             if (it.isNullOrEmpty()) {
                 mViewModel.isLastPage = true
             }
@@ -117,7 +119,13 @@ class FollowingFragment : Fragment() {
                 })
             }
 
-            tvEmptyMessage.text = "Following tidak ditemukan"
+            tvEmptyMessage.text = getString(R.string.empty_following)
+        }
+    }
+
+    private fun emptyView(isEmpty: Boolean) {
+        mBinding.apply {
+            tvEmptyMessage.visibility = if (isEmpty) View.VISIBLE else View.GONE
         }
     }
 

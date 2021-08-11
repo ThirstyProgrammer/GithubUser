@@ -70,17 +70,20 @@ class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateData(data: List<User>) {
+        val itemsSizeBeforeAdded = items.size
         if (items.isNullOrEmpty()) {
             items.clear()
             items.addAll(data)
             notifyDataSetChanged()
         } else {
-            val currentPosition = items.size
-            removeFooter()
-            items.addAll(data.subList(items.size, data.size - 1))
-            notifyItemInserted(currentPosition)
+            if (data.size > items.size) {
+                val currentPosition = items.size
+                removeFooter()
+                items.addAll(data.subList(items.size, data.size - 1))
+                notifyItemInserted(currentPosition)
+            }
         }
-        if (data.size != items.size) addFooter()
+        if (data.size != itemsSizeBeforeAdded && data.size >= 12) addFooter()
     }
 
     private fun addFooter() {

@@ -11,4 +11,7 @@
     <string name="tab_followers">Pengikut</string>
     <string name="tab_following">Diikuti</string>
     <string name="retake">Ulangi</string>
+    <string name="empty_following">Tidak mengikuti siapapun</string>
+    <string name="empty_follower">Tidak memiliki pengikut</string>
+    <string name="empty_search_user">\"%1$s\" tidak ditemukan</string>
 </resources>
