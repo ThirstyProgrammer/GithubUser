@@ -1,250 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="@android:color/white"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_collapseMode="pin"
-                app:layout_collapseParallaxMultiplier="0">
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btn_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_16"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:tint="@color/color_primary"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_arrow_back" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_item_photo"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_margin="@dimen/margin_16"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/user1" />
-
-                <RelativeLayout
-                    android:id="@+id/relativeLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/margin_16"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/img_item_photo">
-
-                    <TextView
-                        android:id="@+id/tv_name"
-                        style="@style/TextStyle.Title"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/margin_8"
-                        android:layout_toStartOf="@id/btn_share"
-                        tools:text="Jake Wharton" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btn_share"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="@dimen/margin_8"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:padding="@dimen/margin_4"
-                        android:src="@drawable/ic_share" />
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout"
-                    style="@style/Layout.Horizontal"
-                    android:layout_marginHorizontal="@dimen/margin_16"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_follower"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_follower" />
-
-                    <TextView
-                        android:id="@+id/tv_follower"
-                        style="@style/TextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_marginStart="8dp"
-                        tools:text="56995 followers" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_circle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        app:srcCompat="@drawable/ic_circle" />
-
-                    <TextView
-                        android:id="@+id/tv_following"
-                        style="@style/TextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_marginStart="8dp"
-                        tools:text="12 following" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout2"
-                    style="@style/Layout.Horizontal"
-                    android:layout_marginHorizontal="@dimen/margin_16"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_repository"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        app:srcCompat="@drawable/ic_repository" />
-
-                    <TextView
-                        android:id="@+id/tv_repository"
-                        style="@style/TextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_marginStart="8dp"
-                        tools:text="102 repository" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout3"
-                    style="@style/Layout.Horizontal"
-                    android:layout_marginHorizontal="@dimen/margin_16"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_location" />
-
-                    <TextView
-                        android:id="@+id/tv_location"
-                        style="@style/TextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_marginStart="8dp"
-                        tools:text="Pittsburgh, PA, USA" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout5"
-                    style="@style/Layout.Horizontal"
-                    android:layout_marginHorizontal="@dimen/margin_16"
-                    android:layout_marginTop="8dp"
-                    android:paddingBottom="@dimen/margin_16"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_company"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_company" />
-
-                    <TextView
-                        android:id="@+id/tv_company"
-                        style="@style/TextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_marginStart="8dp"
-                        tools:text="Google, Inc." />
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:visibility="invisible"
-                app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:navigationIcon="@drawable/ic_arrow_back"
-                app:titleTextColor="@color/color_primary" />
-
-            <RelativeLayout
-                android:id="@+id/container_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/color_primary"
-                app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll|enterAlways">
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btn_back_toolbar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_16"
-                    android:layout_marginTop="@dimen/margin_16"
-                    android:layout_marginEnd="@dimen/margin_16"
-                    android:layout_marginBottom="@dimen/margin_16"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_arrow_back" />
-
-                <TextView
-                    android:id="@+id/tv_title_toolbar"
-                    style="@style/TextStyle.Title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/margin_16"
-                    android:layout_toEndOf="@id/btn_back_toolbar"
-                    android:textColor="@android:color/white"
-                    tools:text="Jake Wharton" />
-            </RelativeLayout>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
-            app:tabTextColor="@android:color/white" />
+            android:background="@android:color/white">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@android:color/white"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="pin"
+                    app:layout_collapseParallaxMultiplier="0">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btn_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_16"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:tint="@color/color_primary"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_arrow_back" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_item_photo"
+                        android:layout_width="@dimen/big_avatar_size"
+                        android:layout_height="@dimen/big_avatar_size"
+                        android:layout_marginHorizontal="@dimen/margin_16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_back"
+                        tools:src="@drawable/user1" />
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/img_item_photo">
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            style="@style/TextStyle.Title"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/margin_8"
+                            android:layout_toStartOf="@id/btn_share"
+                            tools:text="Jake Wharton" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/btn_share"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:padding="@dimen/margin_4"
+                            android:src="@drawable/ic_share" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
+                        style="@style/Layout.Horizontal"
+                        android:layout_marginHorizontal="@dimen/margin_16"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_follower"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_follower" />
+
+                        <TextView
+                            android:id="@+id/tv_follower"
+                            style="@style/TextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_marginStart="8dp"
+                            tools:text="56995 followers" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_circle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            app:srcCompat="@drawable/ic_circle" />
+
+                        <TextView
+                            android:id="@+id/tv_following"
+                            style="@style/TextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_marginStart="8dp"
+                            tools:text="12 following" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        style="@style/Layout.Horizontal"
+                        android:layout_marginHorizontal="@dimen/margin_16"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_repository"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            app:srcCompat="@drawable/ic_repository" />
+
+                        <TextView
+                            android:id="@+id/tv_repository"
+                            style="@style/TextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_marginStart="8dp"
+                            tools:text="102 repository" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout3"
+                        style="@style/Layout.Horizontal"
+                        android:layout_marginHorizontal="@dimen/margin_16"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_location" />
+
+                        <TextView
+                            android:id="@+id/tv_location"
+                            style="@style/TextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_marginStart="8dp"
+                            tools:text="Pittsburgh, PA, USA" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout5"
+                        style="@style/Layout.Horizontal"
+                        android:layout_marginHorizontal="@dimen/margin_16"
+                        android:layout_marginTop="8dp"
+                        android:paddingBottom="@dimen/margin_16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_company"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_company" />
+
+                        <TextView
+                            android:id="@+id/tv_company"
+                            style="@style/TextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_marginStart="8dp"
+                            tools:text="Google, Inc." />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:visibility="invisible"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:navigationIcon="@drawable/ic_arrow_back"
+                    app:titleTextColor="@color/color_primary" />
+
+                <RelativeLayout
+                    android:id="@+id/container_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/color_primary"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="scroll|enterAlways">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btn_back_toolbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_16"
+                        android:layout_marginTop="@dimen/margin_16"
+                        android:layout_marginEnd="@dimen/margin_16"
+                        android:layout_marginBottom="@dimen/margin_16"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_arrow_back" />
+
+                    <TextView
+                        android:id="@+id/tv_title_toolbar"
+                        style="@style/TextStyle.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_16"
+                        android:layout_toEndOf="@id/btn_back_toolbar"
+                        android:textColor="@android:color/white"
+                        tools:text="Jake Wharton" />
+                </RelativeLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+                app:tabTextColor="@android:color/white" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <include
+        android:id="@+id/view_state"
+        layout="@layout/view_state" />
+</RelativeLayout>

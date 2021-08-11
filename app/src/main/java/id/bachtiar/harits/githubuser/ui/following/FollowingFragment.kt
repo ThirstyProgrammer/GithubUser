@@ -60,7 +60,7 @@ class FollowingFragment : Fragment() {
     @ExperimentalSerializationApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showRecyclerList()
+        setupView()
         mBinding.viewState.setOnRetakeClicked {
             mViewModel.getFollowing()
         }
@@ -71,7 +71,8 @@ class FollowingFragment : Fragment() {
     private fun handleViewModelObserver() {
         mViewModel.following.observe(viewLifecycleOwner, {
             isLoading = false
-            userAdapter.updateData(it)
+            mViewModel.updatedFollowing.addAll(it)
+            userAdapter.updateData(mViewModel.updatedFollowing)
             if (it.isNullOrEmpty()) {
                 mViewModel.isLastPage = true
             }
@@ -87,7 +88,7 @@ class FollowingFragment : Fragment() {
     }
 
     @ExperimentalSerializationApi
-    private fun showRecyclerList() {
+    private fun setupView() {
         userAdapter = UserAdapter()
         mBinding.apply {
             val linearLayoutManager = LinearLayoutManager(requireContext())
@@ -115,6 +116,8 @@ class FollowingFragment : Fragment() {
 
                 })
             }
+
+            tvEmptyMessage.text = "Following tidak ditemukan"
         }
     }
 

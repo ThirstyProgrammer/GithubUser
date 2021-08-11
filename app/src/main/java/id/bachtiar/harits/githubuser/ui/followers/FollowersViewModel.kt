@@ -9,12 +9,13 @@ import kotlinx.serialization.ExperimentalSerializationApi
 
 class FollowersViewModel : BaseViewModel() {
 
-    private val _followers = MutableLiveData<List<User>>()
-    val followers: LiveData<List<User>> = _followers
-
+    var updatedFollowers: ArrayList<User> = arrayListOf()
     var isLastPage: Boolean = false
     var url: String = ""
     private var page: Int = 1
+
+    private val _followers = MutableLiveData<List<User>>()
+    val followers: LiveData<List<User>> = _followers
 
     @ExperimentalSerializationApi
     fun getFollowers(isLoadMore: Boolean = false) {

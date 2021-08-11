@@ -44,7 +44,7 @@ class ListFragment : Fragment(), OnItemClickCallback {
     @ExperimentalSerializationApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showRecyclerList()
+        setupView()
         mBinding.viewState.setOnRetakeClicked {
             mViewModel.getUsers()
         }
@@ -84,7 +84,7 @@ class ListFragment : Fragment(), OnItemClickCallback {
         })
     }
 
-    private fun showRecyclerList() {
+    private fun setupView() {
         userAdapter = UserAdapter()
         userAdapter.setOnItemClickCallback(this)
         mBinding.apply {
@@ -98,6 +98,8 @@ class ListFragment : Fragment(), OnItemClickCallback {
                 adapter = userAdapter
                 addItemDecoration(dividerItemDecoration)
             }
+
+            tvEmptyMessage.text = "User not found"
         }
     }
 }

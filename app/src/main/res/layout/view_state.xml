@@ -4,14 +4,21 @@
     android:id="@+id/container_view_state"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:visibility="gone">
 
     <RelativeLayout
         android:id="@+id/container_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/layout_shimmer_users" />
+        <include
+            android:id="@+id/layout_shimmer_user_detail"
+            layout="@layout/layout_shimmer_user_detail" />
+
+        <include
+            android:id="@+id/layout_shimmer_users"
+            layout="@layout/layout_shimmer_users" />
     </RelativeLayout>
 
     <LinearLayout
@@ -20,7 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:orientation="vertical"
-        android:padding="@dimen/margin_32">
+        android:padding="@dimen/margin_32"
+        tools:visibility="gone">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_error_message"

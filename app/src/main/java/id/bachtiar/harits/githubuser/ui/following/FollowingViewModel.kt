@@ -9,6 +9,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 
 class FollowingViewModel : BaseViewModel() {
 
+    var updatedFollowing: ArrayList<User> = arrayListOf()
     var isLastPage: Boolean = false
     var url: String = ""
     private var page: Int = 1

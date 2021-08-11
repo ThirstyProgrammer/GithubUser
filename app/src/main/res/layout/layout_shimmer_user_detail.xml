@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_16"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="@color/color_primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_back" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_item_photo"
+            android:layout_width="@dimen/big_avatar_size"
+            android:layout_height="@dimen/big_avatar_size"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:background="@drawable/bg_circle_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_back" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_title"
+            android:layout_width="@dimen/big_avatar_size"
+            android:layout_height="@dimen/margin_24"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_16"
+            android:background="@color/text_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_item_photo" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/margin_4"
+            android:src="@drawable/ic_share"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_title" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_illustration_1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_16"
+            android:background="@color/text_color"
+            app:layout_constraintEnd_toEndOf="@+id/img_item_photo"
+            app:layout_constraintStart_toStartOf="@+id/iv_title"
+            app:layout_constraintTop_toBottomOf="@id/iv_title" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_illustration_2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_8"
+            android:background="@color/text_color"
+            app:layout_constraintEnd_toEndOf="@+id/iv_title"
+            app:layout_constraintStart_toStartOf="@+id/iv_title"
+            app:layout_constraintTop_toBottomOf="@id/iv_illustration_1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_illustration_3"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:background="@color/text_color"
+            app:layout_constraintEnd_toEndOf="@+id/iv_illustration_2"
+            app:layout_constraintStart_toStartOf="@+id/iv_title"
+            app:layout_constraintTop_toBottomOf="@id/iv_illustration_2" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_8"
+            android:background="@color/text_color"
+            app:layout_constraintEnd_toEndOf="@+id/iv_title"
+            app:layout_constraintStart_toStartOf="@+id/iv_title"
+            app:layout_constraintTop_toBottomOf="@id/iv_illustration_3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.facebook.shimmer.ShimmerFrameLayout>

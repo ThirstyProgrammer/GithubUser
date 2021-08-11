@@ -77,10 +77,10 @@ class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         } else {
             val currentPosition = items.size
             removeFooter()
-            items.addAll(data)
+            items.addAll(data.subList(items.size, data.size - 1))
             notifyItemInserted(currentPosition)
         }
-        if (data.isNotEmpty()) addFooter()
+        if (data.size != items.size) addFooter()
     }
 
     private fun addFooter() {
