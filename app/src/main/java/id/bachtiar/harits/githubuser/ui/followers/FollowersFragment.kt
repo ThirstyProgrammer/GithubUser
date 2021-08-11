@@ -36,7 +36,6 @@ class FollowersFragment : Fragment() {
     private lateinit var mViewModel: FollowersViewModel
     private var isLoading: Boolean = false
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mViewModel = ViewModelProvider(
@@ -79,11 +78,11 @@ class FollowersFragment : Fragment() {
         })
 
         mViewModel.viewState.observe(viewLifecycleOwner, {
-            mBinding.viewState.handleViewState(it)
+            mBinding.viewState.handleViewState(it.first, it.second)
         })
 
         mViewModel.error.observe(viewLifecycleOwner, {
-            mBinding.viewState.setErrorMessage(it.second)
+            mBinding.viewState.setErrorMessage(it)
         })
     }
 

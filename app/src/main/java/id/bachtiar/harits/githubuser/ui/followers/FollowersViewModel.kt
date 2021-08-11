@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.bachtiar.harits.githubuser.base.BaseViewModel
 import id.bachtiar.harits.githubuser.model.User
+import id.bachtiar.harits.githubuser.network.NetworkRequestType
 import kotlinx.serialization.ExperimentalSerializationApi
 
 class FollowersViewModel : BaseViewModel() {
@@ -18,7 +19,7 @@ class FollowersViewModel : BaseViewModel() {
     @ExperimentalSerializationApi
     fun getFollowers(isLoadMore: Boolean = false) {
         if (isLoadMore) page += 1
-        requestAPI(_followers, !isLoadMore) {
+        requestAPI(_followers, NetworkRequestType.LIST_USERS, !isLoadMore) {
             repo.getUsersByURL(url, page)
         }
     }

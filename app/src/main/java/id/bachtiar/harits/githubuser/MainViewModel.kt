@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.bachtiar.harits.githubuser.base.BaseViewModel
 import id.bachtiar.harits.githubuser.model.User
+import id.bachtiar.harits.githubuser.network.NetworkRequestType
 import kotlinx.serialization.ExperimentalSerializationApi
 
 class MainViewModel : BaseViewModel() {
@@ -15,11 +16,11 @@ class MainViewModel : BaseViewModel() {
     @ExperimentalSerializationApi
     fun getUsers() {
         if (username.isEmpty()){
-            requestAPI(_users) {
+            requestAPI(_users, NetworkRequestType.LIST_USERS) {
                 repo.getUsers()
             }
         }else{
-            requestAPI(_users) {
+            requestAPI(_users, NetworkRequestType.LIST_USERS) {
                 repo.getSearchUsers(username)
             }
         }

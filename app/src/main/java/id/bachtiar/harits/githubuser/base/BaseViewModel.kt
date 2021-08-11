@@ -17,30 +17,35 @@ abstract class BaseViewModel : ViewModel() {
 
     val repo = GithubUserRepository()
 
-    private val _viewState = MutableLiveData<ViewState>()
-    val viewState: LiveData<ViewState> = _viewState
+    private val _viewState = MutableLiveData<Pair<ViewState, NetworkRequestType>>()
+    val viewState: LiveData<Pair<ViewState, NetworkRequestType>> = _viewState
 
-    private val _error = MutableLiveData<Pair<NetworkRequestType, String>>()
-    val error: LiveData<Pair<NetworkRequestType, String>> = _error
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
 
-    fun <T> requestAPI(data: MutableLiveData<T>, viewStateActive: Boolean = true, apiMethod: suspend () -> T) {
-        if (viewStateActive) _viewState.value = ViewState.LOADING
+    fun <T> requestAPI(
+        data: MutableLiveData<T>,
+        requestType: NetworkRequestType,
+        viewStateActive: Boolean = true,
+        apiMethod: suspend () -> T
+    ) {
         viewModelScope.launch {
+            if (viewStateActive) _viewState.postValue(Pair(ViewState.LOADING, requestType))
             withContext(Dispatchers.IO) {
                 try {
                     val result = apiMethod()
                     data.postValue(result)
-                    if (viewStateActive) _viewState.postValue(ViewState.SUCCESS)
+                    if (viewStateActive) _viewState.postValue(Pair(ViewState.SUCCESS, requestType))
                 } catch (throwable: Throwable) {
-                    handleNetworkError(NetworkRequestType.USER_DETAIL, throwable)
-                    if (viewStateActive) _viewState.postValue(ViewState.ERROR)
+                    handleNetworkError(throwable)
+                    if (viewStateActive) _viewState.postValue(Pair(ViewState.ERROR, requestType))
                 }
             }
         }
     }
 
-    private fun handleNetworkError(requestType: NetworkRequestType, throwable: Throwable) {
-        val message : String = when (throwable) {
+    private fun handleNetworkError(throwable: Throwable) {
+        val message: String = when (throwable) {
             is IOException -> {
                 "Network Error"
             }
@@ -53,6 +58,6 @@ abstract class BaseViewModel : ViewModel() {
                 "Unknown Error"
             }
         }
-        _error.postValue(Pair(requestType, message))
+        _error.postValue(message)
     }
 }

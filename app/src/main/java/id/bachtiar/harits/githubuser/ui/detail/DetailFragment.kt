@@ -87,7 +87,7 @@ class DetailFragment : Fragment() {
         })
 
         mViewModel.error.observe(viewLifecycleOwner, {
-            Toast.makeText(requireContext(), it.second, Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
         })
     }
 

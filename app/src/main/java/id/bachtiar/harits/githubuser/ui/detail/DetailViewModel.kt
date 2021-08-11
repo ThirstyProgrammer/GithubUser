@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.bachtiar.harits.githubuser.base.BaseViewModel
 import id.bachtiar.harits.githubuser.model.User
+import id.bachtiar.harits.githubuser.network.NetworkRequestType
 import kotlinx.serialization.ExperimentalSerializationApi
 
 class DetailViewModel : BaseViewModel() {
@@ -13,19 +14,8 @@ class DetailViewModel : BaseViewModel() {
 
     @ExperimentalSerializationApi
     fun getUserDetail(url: String) {
-        requestAPI(_user) {
+        requestAPI(_user, NetworkRequestType.USER_DETAIL) {
             repo.getUserDetail(url)
         }
-//        viewModelScope.launch {
-//            withContext(Dispatchers.IO) {
-//                requestAPI(_user, repo.getUserDetail(url))
-//                try {
-//                    val result = repo.getUserDetail(url)
-//                    _user.postValue(result)
-//                } catch (throwable: Throwable) {
-//                    handleNetworkError(NetworkRequestType.USER_DETAIL, throwable)
-//                }
-//            }
-//        }
     }
 }

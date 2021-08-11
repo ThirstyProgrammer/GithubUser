@@ -76,11 +76,11 @@ class ListFragment : Fragment(), OnItemClickCallback {
         })
 
         mViewModel.viewState.observe(viewLifecycleOwner, {
-            mBinding.viewState.handleViewState(it)
+            mBinding.viewState.handleViewState(it.first, it.second)
         })
 
         mViewModel.error.observe(viewLifecycleOwner, {
-            mBinding.viewState.setErrorMessage(it.second)
+            mBinding.viewState.setErrorMessage(it)
         })
     }
 

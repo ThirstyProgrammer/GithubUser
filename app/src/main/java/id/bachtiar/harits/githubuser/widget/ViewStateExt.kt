@@ -2,9 +2,11 @@ package id.bachtiar.harits.githubuser.widget
 
 import android.view.View
 import id.bachtiar.harits.githubuser.databinding.ViewStateBinding
+import id.bachtiar.harits.githubuser.network.NetworkRequestType
 import id.bachtiar.harits.githubuser.network.ViewState
 
-fun ViewStateBinding.handleViewState(state: ViewState) {
+fun ViewStateBinding.handleViewState(state: ViewState, requestType: NetworkRequestType) {
+    handleLoadingType(requestType)
     when (state) {
         ViewState.LOADING -> {
             containerViewState.visibility = View.VISIBLE
@@ -32,4 +34,8 @@ fun ViewStateBinding.setOnRetakeClicked(onClick: () -> Unit) {
     btnRetake.setOnClickListener {
         onClick()
     }
+}
+
+private fun ViewStateBinding.handleLoadingType(requestType: NetworkRequestType) {
+
 }
