@@ -4,8 +4,10 @@ import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -34,6 +36,14 @@ class MainActivity : AppCompatActivity() {
         val inflater = menuInflater
         inflater.inflate(R.menu.option_menu, menu)
         setupSearchView(menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.favorite -> Toast.makeText(this, "HEEELODFSODF", Toast.LENGTH_LONG).show()
+            else -> Unit
+        }
         return true
     }
 
