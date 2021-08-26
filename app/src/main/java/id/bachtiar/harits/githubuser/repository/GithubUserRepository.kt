@@ -1,20 +1,26 @@
 package id.bachtiar.harits.githubuser.repository
 
+import id.bachtiar.harits.githubuser.model.User
+import id.bachtiar.harits.githubuser.network.ApiService
 import id.bachtiar.harits.githubuser.util.Constant
-import id.bachtiar.harits.githubuser.network.RetrofitFactory
 import kotlinx.serialization.ExperimentalSerializationApi
+import javax.inject.Inject
 
 @ExperimentalSerializationApi
-class GithubUserRepository {
+class GithubUserRepository @Inject constructor(private val service: ApiService) : UsersRepository {
 
-    private val service = RetrofitFactory.makeRetrofitService()
+    override suspend fun getUsers(): List<User> = service.getUsers(Constant.API_KEY)
 
-    suspend fun getUsers() = service.getUsers(Constant.API_KEY)
+    override suspend fun getSearchUsers(
+        username: String
+    ): List<User> = service.getSearchUsers(Constant.API_KEY, username).items
 
-    suspend fun getSearchUsers(username: String) = service.getSearchUsers(Constant.API_KEY, username).items
+    override suspend fun getUserDetail(
+        url: String
+    ): User = service.getUserDetail(Constant.API_KEY, url)
 
-    suspend fun getUserDetail(url: String) = service.getUserDetail(Constant.API_KEY, url)
-
-    suspend fun getUsersByURL(url: String, page: Int) =
-        service.getUsersByURL(Constant.API_KEY, "$url?page=$page&per_page=12")
+    override suspend fun getUsersByURL(
+        url: String,
+        page: Int
+    ): List<User> = service.getUsersByURL(Constant.API_KEY, "$url?page=$page&per_page=12")
 }

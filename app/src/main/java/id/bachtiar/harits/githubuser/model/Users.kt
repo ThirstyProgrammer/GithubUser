@@ -10,16 +10,15 @@ import kotlinx.serialization.Transient
 @Parcelize
 @Serializable
 data class User(
-    @SerialName("login")
-    val username: String? = "",
+    val id : Int? = 0,
+    @SerialName("login") val username: String? = "",
+    @SerialName("avatar_url") val avatar: String? = "",
     val name: String? = "",
     val company: String? = "",
     val location: String? = "",
     val followers: Int? = 0,
     val following: Int? = 0,
     @SerialName("public_repos") val repos : Int? = 0,
-    val id : Int? = 0,
-    @SerialName("avatar_url") val avatar: String? = "",
     val url: String? = "",
     @SerialName("html_url") val githubUrl: String? = "",
     @SerialName("followers_url") val followersUrl: String? = "",

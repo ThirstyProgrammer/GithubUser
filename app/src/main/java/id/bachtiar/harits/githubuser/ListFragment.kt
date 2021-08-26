@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import id.bachtiar.harits.githubuser.databinding.FragmentListBinding
 import id.bachtiar.harits.githubuser.model.User
 import id.bachtiar.harits.githubuser.ui.detail.DetailFragment
@@ -17,19 +18,13 @@ import id.bachtiar.harits.githubuser.widget.setErrorMessage
 import id.bachtiar.harits.githubuser.widget.setOnRetakeClicked
 import kotlinx.serialization.ExperimentalSerializationApi
 
+@ExperimentalSerializationApi
+@AndroidEntryPoint
 class ListFragment : Fragment(), OnItemClickCallback {
 
     private lateinit var mBinding: FragmentListBinding
     private lateinit var userAdapter: UserAdapter
-    private lateinit var mViewModel: MainViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(MainViewModel::class.java)
-    }
+    private val mViewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +36,6 @@ class ListFragment : Fragment(), OnItemClickCallback {
         return mBinding.root
     }
 
-    @ExperimentalSerializationApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()

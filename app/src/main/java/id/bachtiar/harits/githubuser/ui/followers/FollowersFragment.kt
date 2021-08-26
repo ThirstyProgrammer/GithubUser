@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import id.bachtiar.harits.githubuser.R
 import id.bachtiar.harits.githubuser.UserAdapter
 import id.bachtiar.harits.githubuser.databinding.FragmentListBinding
@@ -19,6 +21,8 @@ import id.bachtiar.harits.githubuser.widget.setErrorMessage
 import id.bachtiar.harits.githubuser.widget.setOnRetakeClicked
 import kotlinx.serialization.ExperimentalSerializationApi
 
+@ExperimentalSerializationApi
+@AndroidEntryPoint
 class FollowersFragment : Fragment() {
 
     companion object {
@@ -34,15 +38,11 @@ class FollowersFragment : Fragment() {
 
     private lateinit var mBinding: FragmentListBinding
     private lateinit var userAdapter: UserAdapter
-    private lateinit var mViewModel: FollowersViewModel
+    private val mViewModel: FollowersViewModel by viewModels()
     private var isLoading: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(FollowersViewModel::class.java)
         if (requireArguments().containsKey(Constant.Extras.URL)) {
             mViewModel.url = requireArguments().getString(Constant.Extras.URL).defaultEmpty()
         }

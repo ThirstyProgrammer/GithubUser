@@ -12,11 +12,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
 import id.bachtiar.harits.githubuser.databinding.ActivityMainBinding
 import id.bachtiar.harits.githubuser.util.defaultEmpty
 import kotlinx.serialization.ExperimentalSerializationApi
 import java.util.*
 
+@ExperimentalSerializationApi
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -31,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         initListFragment()
     }
 
-    @ExperimentalSerializationApi
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.option_menu, menu)
