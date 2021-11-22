@@ -1,21 +1,21 @@
 package id.bachtiar.harits.githubuser.ui.favourite
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.bachtiar.harits.githubuser.base.BaseViewModel
-import id.bachtiar.harits.githubuser.model.User
-import id.bachtiar.harits.githubuser.repository.UsersRepository
+import id.bachtiar.harits.githubuser.cache.dao.UsersDao
+import id.bachtiar.harits.githubuser.cache.entity.UsersEntity
+import kotlinx.serialization.ExperimentalSerializationApi
 import javax.inject.Inject
 
+@ExperimentalSerializationApi
 @HiltViewModel
-class FavouriteViewModel @Inject constructor(private val repo: UsersRepository) : BaseViewModel() {
+class FavouriteViewModel @Inject constructor(
+    private val dao: UsersDao
+) : BaseViewModel() {
 
-    private val _users = MutableLiveData<List<User>>()
-    val users: LiveData<List<User>> = _users
     var username: String = ""
-
-    fun getUsers() {
-        // TODO Handle get users from room
-    }
+    val users: LiveData<List<UsersEntity>> = dao.getUsers().asLiveData()
+    val searchUsers: LiveData<List<UsersEntity>> = dao.searchUsers(username).asLiveData()
 }

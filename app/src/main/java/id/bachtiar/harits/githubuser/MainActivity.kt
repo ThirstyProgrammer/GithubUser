@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -48,7 +47,6 @@ class MainActivity : AppCompatActivity() {
             R.id.favorite -> {
                 val intent = Intent(this, FavouriteActivity::class.java)
                 startActivity(intent)
-//                Toast.makeText(this, "HEEELODFSODF", Toast.LENGTH_LONG).show()
             }
             else -> Unit
         }

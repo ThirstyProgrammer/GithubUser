@@ -43,10 +43,10 @@ class FavouriteFragment : Fragment(), OnItemClickCallback {
         super.onViewCreated(view, savedInstanceState)
         setupView()
         mBinding.viewState.setOnRetakeClicked {
-            mViewModel.getUsers()
+//            mViewModel.getUsers()
         }
         handleViewModelObserver()
-        mViewModel.getUsers()
+//        mViewModel.getUsers()
     }
 
     override fun onItemClicked(data: User) {
@@ -63,15 +63,20 @@ class FavouriteFragment : Fragment(), OnItemClickCallback {
 
     fun getSearchUsername(username: String = "") {
         mViewModel.username = username
-        mViewModel.getUsers()
+//        mViewModel.getUsers()
     }
 
     private fun handleViewModelObserver() {
-        mViewModel.users.observe(viewLifecycleOwner, {
-            userAdapter.setData(it)
-            emptyView(it.isEmpty())
+        mViewModel.users.observe(viewLifecycleOwner, { users ->
+            val newList = users.map { it.mapToModel() }
+            userAdapter.setData(newList)
+            emptyView(newList.isEmpty())
         })
-
+//        mViewModel.searchUsers.observe(viewLifecycleOwner, { users ->
+//            val newList = users.map { it.mapToModel() }
+//            userAdapter.setData(newList)
+//            emptyView(newList.isEmpty())
+//        })
         mViewModel.viewState.observe(viewLifecycleOwner, {
             mBinding.viewState.handleViewState(it.first, it.second)
         })

@@ -8,7 +8,9 @@ import id.bachtiar.harits.githubuser.databinding.ItemUserBinding
 import id.bachtiar.harits.githubuser.databinding.ItemUserShimmerBinding
 import id.bachtiar.harits.githubuser.model.User
 
-class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class UserAdapter(
+    private val addToFavourite: ((user: User) -> Unit)? = null
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         const val TYPE_ITEM = 0
@@ -43,7 +45,7 @@ class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is UserViewHolder -> {
-                holder.bind(items[position])
+                holder.bind(items[position], addToFavourite)
                 if (::listener.isInitialized) {
                     holder.itemView.setOnClickListener {
                         listener.onItemClicked(items[position])

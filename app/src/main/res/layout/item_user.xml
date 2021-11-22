@@ -20,9 +20,10 @@
         style="@style/TextStyle.Title"
         android:layout_width="0dp"
         android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_8"
         android:layout_marginBottom="@dimen/margin_4"
         app:layout_constraintBottom_toTopOf="@id/guideline2"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_favourite"
         app:layout_constraintStart_toEndOf="@+id/img_item_photo"
         tools:text="USERNAME" />
 
@@ -32,10 +33,22 @@
         android:layout_width="0dp"
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_4"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/margin_8"
+        app:layout_constraintEnd_toStartOf="@+id/btn_favourite"
         app:layout_constraintStart_toEndOf="@+id/img_item_photo"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         tools:text="github_url" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_favourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="@dimen/margin_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_favourite_outlined" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
