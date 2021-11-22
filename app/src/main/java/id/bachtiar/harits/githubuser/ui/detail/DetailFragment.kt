@@ -17,6 +17,7 @@ import id.bachtiar.harits.githubuser.R
 import id.bachtiar.harits.githubuser.ViewPagerAdapter
 import id.bachtiar.harits.githubuser.databinding.FragmentDetailBinding
 import id.bachtiar.harits.githubuser.model.User
+import id.bachtiar.harits.githubuser.ui.favourite.FavouriteActivity
 import id.bachtiar.harits.githubuser.ui.followers.FollowersFragment
 import id.bachtiar.harits.githubuser.ui.following.FollowingFragment
 import id.bachtiar.harits.githubuser.util.*
@@ -115,10 +116,24 @@ class DetailFragment : Fragment() {
         })
         mBinding.tvTitleToolbar.text = user.username
         mBinding.btnBackToolbar.setOnClickListener {
-            (requireActivity() as MainActivity).popFragment()
+            when (requireActivity()) {
+                is MainActivity -> {
+                    (requireActivity() as MainActivity).popFragment()
+                }
+                is FavouriteActivity -> {
+                    (requireActivity() as FavouriteActivity).popFragment()
+                }
+            }
         }
         mBinding.btnBack.setOnClickListener {
-            (requireActivity() as MainActivity).popFragment()
+            when (requireActivity()) {
+                is MainActivity -> {
+                    (requireActivity() as MainActivity).popFragment()
+                }
+                is FavouriteActivity -> {
+                    (requireActivity() as FavouriteActivity).popFragment()
+                }
+            }
         }
     }
 

@@ -13,4 +13,5 @@
     <string name="empty_following">Doesn\'t follow anyone</string>
     <string name="empty_follower">Have no followers</string>
     <string name="empty_search_user">\"%1$s\" not found</string>
+    <string name="favourite">Favorite</string>
 </resources>

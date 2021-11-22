@@ -1,81 +1,70 @@
-package id.bachtiar.harits.githubuser
+package id.bachtiar.harits.githubuser.ui.favourite
 
 import android.app.SearchManager
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
-import id.bachtiar.harits.githubuser.databinding.ActivityMainBinding
-import id.bachtiar.harits.githubuser.ui.favourite.FavouriteActivity
+import id.bachtiar.harits.githubuser.R
+import id.bachtiar.harits.githubuser.databinding.ActivityFavouriteBinding
 import id.bachtiar.harits.githubuser.util.defaultEmpty
 import kotlinx.serialization.ExperimentalSerializationApi
 import java.util.*
 
 @ExperimentalSerializationApi
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class FavouriteActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityFavouriteBinding
     private val stack: Stack<Fragment> = Stack()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityFavouriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupActionBar()
-        initListFragment()
+        initFavouriteFragment()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.option_menu, menu)
+        inflater.inflate(R.menu.favourite_menu, menu)
         setupSearchView(menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.favorite -> {
-                val intent = Intent(this, FavouriteActivity::class.java)
-                startActivity(intent)
-//                Toast.makeText(this, "HEEELODFSODF", Toast.LENGTH_LONG).show()
-            }
-            else -> Unit
-        }
         return true
     }
 
     override fun onBackPressed() {
         if (!stack.isEmpty()) {
             stack.pop()
-            initListFragment()
+            initFavouriteFragment()
         } else super.onBackPressed()
     }
 
     fun popFragment() {
         if (!stack.isEmpty()) {
             stack.pop()
-            initListFragment()
+            initFavouriteFragment()
         } else super.onBackPressed()
     }
 
-    private fun initListFragment() {
+    private fun initFavouriteFragment() {
         val mFragmentManager = supportFragmentManager
-        val fragment = mFragmentManager.findFragmentByTag(ListFragment::class.java.simpleName)
+        val fragment = mFragmentManager.findFragmentByTag(FavouriteFragment::class.java.simpleName)
 
-        if (fragment !is ListFragment) {
+        if (fragment !is FavouriteFragment) {
             mFragmentManager.beginTransaction()
-                .add(R.id.frame_container, ListFragment(), ListFragment::class.java.simpleName)
+                .add(
+                    R.id.frame_container,
+                    FavouriteFragment(),
+                    FavouriteFragment::class.java.simpleName
+                )
                 .commit()
         }
     }
@@ -104,6 +93,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @ExperimentalSerializationApi
     private fun setupSearchView(menu: Menu?) {
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = menu?.findItem(R.id.search)?.actionView as SearchView
@@ -116,16 +106,16 @@ class MainActivity : AppCompatActivity() {
         searchEditText.setHintTextColor(ContextCompat.getColor(this, R.color.color_primary_light))
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                val listFragment =
-                    supportFragmentManager.findFragmentById(R.id.frame_container) as ListFragment
-                listFragment.getSearchUsername(query.defaultEmpty())
+                val favouriteFragment =
+                    supportFragmentManager.findFragmentById(R.id.frame_container) as FavouriteFragment
+                favouriteFragment.getSearchUsername(query.defaultEmpty())
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                val listFragment =
-                    supportFragmentManager.findFragmentById(R.id.frame_container) as ListFragment
-                if (newText.isNullOrEmpty()) listFragment.getSearchUsername()
+                val favouriteFragment =
+                    supportFragmentManager.findFragmentById(R.id.frame_container) as FavouriteFragment
+                if (newText.isNullOrEmpty()) favouriteFragment.getSearchUsername()
                 return false
             }
 
