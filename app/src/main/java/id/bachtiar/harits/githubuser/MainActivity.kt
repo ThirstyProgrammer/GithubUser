@@ -36,20 +36,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        setupActionBar()
+        initListFragment()
         mViewModel.getThemeSetting().observe(this, {
             val switchItem = menu?.findItem(R.id.switch_theme)
             mViewModel.themeDrawable = if (it) R.drawable.ic_dark_mode else R.drawable.ic_light_mode
+            mViewModel.isSwitchChecked = it
             if (it) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
-            switchItem?.setIcon(R.drawable.ic_dark_mode)
+            switchItem?.setIcon(mViewModel.themeDrawable)
             mViewModel.updateViewState(ViewState.SUCCESS, NetworkRequestType.THEME_CHANGE)
         })
-        setupActionBar()
-        initListFragment()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         inflater.inflate(R.menu.option_menu, menu)
         setupSearchView(menu)
         this.menu = menu
-        menu?.findItem(R.id.switch_theme)?.setIcon(mViewModel.themeDrawable)
+        updateSwitchItem()
         return true
     }
 
@@ -89,6 +89,12 @@ class MainActivity : AppCompatActivity() {
             stack.pop()
             initListFragment()
         } else super.onBackPressed()
+    }
+
+    private fun updateSwitchItem() {
+        val switchItem = menu?.findItem(R.id.switch_theme)
+        switchItem?.setIcon(mViewModel.themeDrawable)
+        switchItem?.isChecked = mViewModel.isSwitchChecked
     }
 
     private fun initListFragment() {

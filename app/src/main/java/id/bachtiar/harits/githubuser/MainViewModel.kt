@@ -20,6 +20,7 @@ class MainViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     var themeDrawable: Int = 0
+    var isSwitchChecked: Boolean = false
 
     fun getThemeSetting(): LiveData<Boolean> {
         return dataStoreManager.readValue(booleanPreferencesKey(DataStoreManager.THEME_KEY), false)
@@ -27,7 +28,6 @@ class MainViewModel @Inject constructor(
     }
 
     fun saveThemeSetting(isDarkModeActive: Boolean) = viewModelScope.launch {
-        updateViewState(ViewState.LOADING, NetworkRequestType.THEME_CHANGE)
         dataStoreManager.storeValue(
             booleanPreferencesKey(DataStoreManager.THEME_KEY),
             isDarkModeActive

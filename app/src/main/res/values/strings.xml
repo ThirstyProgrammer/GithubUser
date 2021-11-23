@@ -16,4 +16,5 @@
     <string name="favourite">Favorite</string>
     <string name="add_to_favourite">%1$s Added to Favourite</string>
     <string name="remove_from_favourite">%1$s Remove from Favourite</string>
+    <string name="theme">Theme</string>
 </resources>

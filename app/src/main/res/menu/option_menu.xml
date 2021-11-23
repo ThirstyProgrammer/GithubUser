@@ -18,6 +18,6 @@
         android:id="@+id/switch_theme"
         android:checkable="true"
         android:icon="@drawable/ic_light_mode"
-        android:title="Theme"
+        android:title="@string/theme"
         app:showAsAction="always" />
 </menu>
