@@ -31,7 +31,7 @@ class FavouriteFragment : Fragment(R.layout.fragment_list), OnItemClickCallback 
         mViewModel.getUsers().observe(viewLifecycleOwner, { users ->
             val newList = users.map { it.mapToModel() }
             userAdapter.setData(newList)
-            emptyView(newList.isEmpty())
+            emptyView(getString(R.string.empty_favourite), newList.isEmpty())
         })
     }
 
@@ -53,13 +53,16 @@ class FavouriteFragment : Fragment(R.layout.fragment_list), OnItemClickCallback 
             mViewModel.getSearchUsers().observe(viewLifecycleOwner, { users ->
                 val newList = users.map { it.mapToModel() }
                 userAdapter.setData(newList)
-                emptyView(newList.isEmpty())
+                emptyView(
+                    getString(R.string.empty_search_user, mViewModel.username),
+                    newList.isEmpty()
+                )
             })
         } else {
             mViewModel.getUsers().observe(viewLifecycleOwner, { users ->
                 val newList = users.map { it.mapToModel() }
                 userAdapter.setData(newList)
-                emptyView(newList.isEmpty())
+                emptyView(getString(R.string.empty_favourite), newList.isEmpty())
             })
         }
     }
@@ -83,9 +86,9 @@ class FavouriteFragment : Fragment(R.layout.fragment_list), OnItemClickCallback 
         }
     }
 
-    private fun emptyView(isEmpty: Boolean) {
+    private fun emptyView(message: String, isEmpty: Boolean) {
         mBinding.apply {
-            tvEmptyMessage.text = getString(R.string.empty_search_user, mViewModel.username)
+            tvEmptyMessage.text = message
             tvEmptyMessage.visibility = if (isEmpty) View.VISIBLE else View.GONE
         }
     }

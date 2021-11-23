@@ -17,5 +17,6 @@
     <string name="favourite">Favorit</string>
     <string name="add_to_favourite">%1$s Ditambahkan ke Favorit</string>
     <string name="remove_from_favourite">%1$s Dihapus dari Favorit</string>
+    <string name="empty_favourite">Kamu tidak memiliki list favorit</string>
     <string name="theme">Theme</string>
 </resources>
