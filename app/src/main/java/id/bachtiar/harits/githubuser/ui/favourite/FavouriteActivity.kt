@@ -112,10 +112,10 @@ class FavouriteActivity : AppCompatActivity() {
                 return true
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
+            override fun onQueryTextChange(query: String?): Boolean {
                 val favouriteFragment =
                     supportFragmentManager.findFragmentById(R.id.frame_container) as FavouriteFragment
-                if (newText.isNullOrEmpty()) favouriteFragment.getSearchUsername()
+                favouriteFragment.getSearchUsername(query.defaultEmpty())
                 return false
             }
 

@@ -10,7 +10,7 @@ interface UsersDao {
     @Query("Select * from users")
     fun getUsers(): Flow<List<UsersEntity>>
 
-    @Query("Select * from users WHERE username LIKE :search")
+    @Query("Select * from users WHERE username LIKE '%' || :search || '%'")
     fun searchUsers(search: String?): Flow<List<UsersEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
