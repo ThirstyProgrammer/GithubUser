@@ -3,7 +3,6 @@ package id.bachtiar.harits.githubuser
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
 import id.bachtiar.harits.githubuser.cache.dao.FakeUsersDao
-import id.bachtiar.harits.githubuser.cache.dao.UsersDao
 import id.bachtiar.harits.githubuser.repository.FakeGithubUserRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.serialization.ExperimentalSerializationApi

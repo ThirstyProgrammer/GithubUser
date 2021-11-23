@@ -1,12 +1,16 @@
 package id.bachtiar.harits.githubuser
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import id.bachtiar.harits.githubuser.databinding.ActivitySplashBinding
+import kotlinx.serialization.ExperimentalSerializationApi
 import java.util.*
 import kotlin.concurrent.schedule
 
+@ExperimentalSerializationApi
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding

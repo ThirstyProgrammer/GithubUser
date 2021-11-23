@@ -57,7 +57,7 @@ class ListViewModel @Inject constructor(
         return newList
     }
 
-    fun checkIsFavourite(user: User): Boolean {
+    private fun checkIsFavourite(user: User): Boolean {
         favouriteUsers.value?.forEach {
             if (user.id == it.id) return true
         }

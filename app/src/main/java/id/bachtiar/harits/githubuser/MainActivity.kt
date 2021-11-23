@@ -16,8 +16,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import id.bachtiar.harits.githubuser.databinding.ActivityMainBinding
-import id.bachtiar.harits.githubuser.network.NetworkRequestType
-import id.bachtiar.harits.githubuser.network.ViewState
 import id.bachtiar.harits.githubuser.ui.favourite.FavouriteActivity
 import id.bachtiar.harits.githubuser.util.defaultEmpty
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -48,7 +46,6 @@ class MainActivity : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
             switchItem?.setIcon(mViewModel.themeDrawable)
-            mViewModel.updateViewState(ViewState.SUCCESS, NetworkRequestType.THEME_CHANGE)
         })
     }
 

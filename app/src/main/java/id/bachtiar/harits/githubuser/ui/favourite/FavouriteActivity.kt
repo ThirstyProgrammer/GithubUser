@@ -82,9 +82,8 @@ class FavouriteActivity : AppCompatActivity() {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowHomeEnabled(true)
             binding.toolbar.visibility = View.GONE
-
         } else {
-            supportActionBar?.title = getString(R.string.app_name)
+            supportActionBar?.title = getString(R.string.favourite)
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
             binding.toolbar.visibility = View.VISIBLE
         }

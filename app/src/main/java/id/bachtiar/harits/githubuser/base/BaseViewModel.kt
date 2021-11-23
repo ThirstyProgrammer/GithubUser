@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import id.bachtiar.harits.githubuser.network.NetworkRequestType
 import id.bachtiar.harits.githubuser.network.ViewState
-import id.bachtiar.harits.githubuser.repository.GithubUserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
