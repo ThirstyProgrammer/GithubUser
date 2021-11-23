@@ -14,9 +14,10 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import id.bachtiar.harits.githubuser.databinding.ActivityMainBinding
+import id.bachtiar.harits.githubuser.network.NetworkRequestType
+import id.bachtiar.harits.githubuser.network.ViewState
 import id.bachtiar.harits.githubuser.ui.favourite.FavouriteActivity
 import id.bachtiar.harits.githubuser.util.defaultEmpty
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -36,20 +37,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupActionBar()
-        initListFragment()
         mViewModel.getThemeSetting().observe(this, {
             val switchItem = menu?.findItem(R.id.switch_theme)
+            mViewModel.themeDrawable = if (it) R.drawable.ic_dark_mode else R.drawable.ic_light_mode
             if (it) {
-                val drawable =
-                    if (switchItem?.isChecked == true) R.drawable.ic_dark_mode else R.drawable.ic_light_mode
-//                switchItem?.isChecked = !switchItem.isChecked
-                switchItem?.setIcon(drawable)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+            switchItem?.setIcon(R.drawable.ic_dark_mode)
+            mViewModel.updateViewState(ViewState.SUCCESS, NetworkRequestType.THEME_CHANGE)
         })
+        setupActionBar()
+        initListFragment()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         inflater.inflate(R.menu.option_menu, menu)
         setupSearchView(menu)
         this.menu = menu
+        menu?.findItem(R.id.switch_theme)?.setIcon(mViewModel.themeDrawable)
         return true
     }
 
@@ -67,8 +68,9 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             R.id.switch_theme -> {
-                mViewModel.saveThemeSetting(!item.isChecked)
-                item.isChecked = !item.isChecked
+                val isChecked = !item.isChecked
+                mViewModel.saveThemeSetting(isChecked)
+                item.isChecked = isChecked
             }
             else -> Unit
         }
@@ -110,17 +112,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun setActionBarState() {
         if (supportFragmentManager.backStackEntryCount > 0) {
-            if (supportActionBar != null) {
-                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                supportActionBar?.setDisplayShowHomeEnabled(true)
-                binding.toolbar.visibility = View.GONE
-            }
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowHomeEnabled(true)
+            binding.toolbar.visibility = View.GONE
         } else {
-            if (supportActionBar != null) {
-                supportActionBar?.title = getString(R.string.app_name)
-                supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                binding.toolbar.visibility = View.VISIBLE
-            }
+            supportActionBar?.title = getString(R.string.app_name)
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            binding.toolbar.visibility = View.VISIBLE
         }
     }
 

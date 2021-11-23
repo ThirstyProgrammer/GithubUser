@@ -17,7 +17,7 @@ android {
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
-
+        buildConfigField("String", "GITHUB_TOKEN", '"82ba648898174bcc225412a244f0d6c8b01b0c1a"')
         testInstrumentationRunner "id.bachtiar.harits.githubuser.HiltTestRunner"
     }
 
@@ -67,6 +67,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
     implementation "androidx.datastore:datastore-preferences:1.0.0"
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.5.2'
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.bumptech.glide:glide:4.12.0'

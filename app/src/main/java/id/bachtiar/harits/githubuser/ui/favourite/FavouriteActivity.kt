@@ -79,17 +79,14 @@ class FavouriteActivity : AppCompatActivity() {
 
     private fun setActionBarState() {
         if (supportFragmentManager.backStackEntryCount > 0) {
-            if (supportActionBar != null) {
-                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                supportActionBar?.setDisplayShowHomeEnabled(true)
-                binding.toolbar.visibility = View.GONE
-            }
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowHomeEnabled(true)
+            binding.toolbar.visibility = View.GONE
+
         } else {
-            if (supportActionBar != null) {
-                supportActionBar?.title = getString(R.string.app_name)
-                supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                binding.toolbar.visibility = View.VISIBLE
-            }
+            supportActionBar?.title = getString(R.string.app_name)
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            binding.toolbar.visibility = View.VISIBLE
         }
     }
 

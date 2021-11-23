@@ -15,9 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_back"
-        app:subtitleTextColor="@color/white"
         app:titleTextAppearance="@style/TextStyle.Toolbar"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="?attr/colorOnPrimary" />
 
     <FrameLayout
         android:id="@+id/frame_container"

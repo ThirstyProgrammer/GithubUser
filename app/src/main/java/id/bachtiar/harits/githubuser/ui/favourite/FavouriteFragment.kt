@@ -1,13 +1,12 @@
 package id.bachtiar.harits.githubuser.ui.favourite
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import id.bachtiar.harits.githubuser.OnItemClickCallback
 import id.bachtiar.harits.githubuser.R
@@ -20,21 +19,11 @@ import kotlinx.serialization.ExperimentalSerializationApi
 
 @ExperimentalSerializationApi
 @AndroidEntryPoint
-class FavouriteFragment : Fragment(), OnItemClickCallback {
+class FavouriteFragment : Fragment(R.layout.fragment_list), OnItemClickCallback {
 
-    private lateinit var mBinding: FragmentListBinding
     private lateinit var userAdapter: UserAdapter
+    private val mBinding: FragmentListBinding by viewBinding()
     private val mViewModel: FavouriteViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        super.onCreateView(inflater, container, savedInstanceState)
-        mBinding = FragmentListBinding.inflate(inflater)
-        return mBinding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

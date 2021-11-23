@@ -24,6 +24,10 @@ abstract class BaseViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    fun updateViewState(state: ViewState, networkRequestType: NetworkRequestType) {
+        _viewState.postValue(Pair(state, networkRequestType))
+    }
+
     fun <T> requestAPI(
         data: MutableLiveData<T>,
         requestType: NetworkRequestType,

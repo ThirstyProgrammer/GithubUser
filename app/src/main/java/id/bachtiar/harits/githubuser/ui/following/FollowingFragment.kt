@@ -1,14 +1,12 @@
 package id.bachtiar.harits.githubuser.ui.following
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import id.bachtiar.harits.githubuser.R
 import id.bachtiar.harits.githubuser.UserAdapter
@@ -23,7 +21,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 
 @ExperimentalSerializationApi
 @AndroidEntryPoint
-class FollowingFragment : Fragment() {
+class FollowingFragment : Fragment(R.layout.fragment_list) {
 
     companion object {
 
@@ -36,8 +34,8 @@ class FollowingFragment : Fragment() {
         }
     }
 
-    private lateinit var mBinding: FragmentListBinding
     private lateinit var userAdapter: UserAdapter
+    private val mBinding: FragmentListBinding by viewBinding()
     private val mViewModel: FollowingViewModel by viewModels()
     private var isLoading: Boolean = false
 
@@ -48,17 +46,6 @@ class FollowingFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        super.onCreateView(inflater, container, savedInstanceState)
-        mBinding = FragmentListBinding.inflate(inflater)
-        return mBinding.root
-    }
-
-    @ExperimentalSerializationApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()
