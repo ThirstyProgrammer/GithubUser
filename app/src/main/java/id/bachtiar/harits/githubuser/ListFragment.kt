@@ -26,7 +26,7 @@ class ListFragment : Fragment(), OnItemClickCallback {
 
     private lateinit var mBinding: FragmentListBinding
     private lateinit var userAdapter: UserAdapter
-    private val mViewModel: MainViewModel by viewModels()
+    private val mViewModel: ListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

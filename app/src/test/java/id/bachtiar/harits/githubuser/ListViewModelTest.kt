@@ -2,9 +2,10 @@ package id.bachtiar.harits.githubuser
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
+import id.bachtiar.harits.githubuser.cache.dao.FakeUsersDao
+import id.bachtiar.harits.githubuser.cache.dao.UsersDao
 import id.bachtiar.harits.githubuser.repository.FakeGithubUserRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.serialization.ExperimentalSerializationApi
 import org.junit.Before
 import org.junit.Rule
@@ -12,9 +13,9 @@ import org.junit.Test
 
 @ExperimentalSerializationApi
 @ExperimentalCoroutinesApi
-class MainViewModelTest {
+class ListViewModelTest {
 
-    private lateinit var mViewModel: MainViewModel
+    private lateinit var mViewModel: ListViewModel
 
     //    // Executes each task synchronously using Architecture Components.
     @get:Rule
@@ -26,7 +27,7 @@ class MainViewModelTest {
 
     @Before
     fun setup() {
-        mViewModel = MainViewModel(FakeGithubUserRepository())
+        mViewModel = ListViewModel(FakeGithubUserRepository(), FakeUsersDao())
     }
 
     @Test

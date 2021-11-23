@@ -8,10 +8,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import id.bachtiar.harits.githubuser.databinding.ActivityMainBinding
 import id.bachtiar.harits.githubuser.ui.favourite.FavouriteActivity
@@ -25,6 +28,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val stack: Stack<Fragment> = Stack()
+    private val mViewModel: MainViewModel by viewModels()
+    private var menu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +38,25 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBar()
         initListFragment()
+        mViewModel.getThemeSetting().observe(this, {
+            val switchItem = menu?.findItem(R.id.switch_theme)
+            if (it) {
+                val drawable =
+                    if (switchItem?.isChecked == true) R.drawable.ic_dark_mode else R.drawable.ic_light_mode
+//                switchItem?.isChecked = !switchItem.isChecked
+                switchItem?.setIcon(drawable)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.option_menu, menu)
         setupSearchView(menu)
+        this.menu = menu
         return true
     }
 
@@ -47,6 +65,10 @@ class MainActivity : AppCompatActivity() {
             R.id.favorite -> {
                 val intent = Intent(this, FavouriteActivity::class.java)
                 startActivity(intent)
+            }
+            R.id.switch_theme -> {
+                mViewModel.saveThemeSetting(!item.isChecked)
+                item.isChecked = !item.isChecked
             }
             else -> Unit
         }

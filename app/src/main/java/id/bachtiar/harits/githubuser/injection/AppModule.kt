@@ -12,6 +12,7 @@ import id.bachtiar.harits.githubuser.network.ApiService
 import id.bachtiar.harits.githubuser.repository.GithubUserRepository
 import id.bachtiar.harits.githubuser.repository.UsersRepository
 import id.bachtiar.harits.githubuser.util.Constant
+import id.bachtiar.harits.githubuser.util.DataStoreManager
 import kotlinx.serialization.ExperimentalSerializationApi
 import javax.inject.Singleton
 
@@ -27,11 +28,11 @@ class AppModule {
         @ApplicationContext context: Context
     ) = Room.databaseBuilder(context, GithubUserDB::class.java, Constant.DATABASE_NAME).build()
 
-   @Singleton
-   @Provides
-   fun provideUsersDao(
-       database: GithubUserDB
-   ) = database.usersDao()
+    @Singleton
+    @Provides
+    fun provideUsersDao(
+        database: GithubUserDB
+    ) = database.usersDao()
 
     @ExperimentalSerializationApi
     @Singleton
@@ -39,4 +40,8 @@ class AppModule {
     fun provideRepository(
         apiService: ApiService
     ) = GithubUserRepository(apiService) as UsersRepository
+
+    @Singleton
+    @Provides
+    fun provideDataStoreManager(@ApplicationContext context: Context) = DataStoreManager(context)
 }

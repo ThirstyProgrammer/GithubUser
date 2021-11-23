@@ -13,4 +13,11 @@
         android:icon="@drawable/ic_favorite"
         android:title="@string/favourite"
         app:showAsAction="collapseActionView|always" />
+
+    <item
+        android:id="@+id/switch_theme"
+        android:checkable="true"
+        android:icon="@drawable/ic_light_mode"
+        android:title="Theme"
+        app:showAsAction="always" />
 </menu>
