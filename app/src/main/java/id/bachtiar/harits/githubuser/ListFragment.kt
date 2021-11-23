@@ -18,6 +18,7 @@ import id.bachtiar.harits.githubuser.widget.handleViewState
 import id.bachtiar.harits.githubuser.widget.setErrorMessage
 import id.bachtiar.harits.githubuser.widget.setOnRetakeClicked
 import kotlinx.serialization.ExperimentalSerializationApi
+import java.util.*
 
 @ExperimentalSerializationApi
 @AndroidEntryPoint
@@ -44,7 +45,6 @@ class ListFragment : Fragment(), OnItemClickCallback {
             mViewModel.getUsers()
         }
         handleViewModelObserver()
-        mViewModel.getUsers()
     }
 
     override fun onItemClicked(data: User) {
@@ -66,11 +66,13 @@ class ListFragment : Fragment(), OnItemClickCallback {
     }
 
     private fun handleViewModelObserver() {
+        mViewModel.favouriteUsers.observe(viewLifecycleOwner, {
+            mViewModel.getUsers()
+        })
         mViewModel.users.observe(viewLifecycleOwner, {
-            userAdapter.setData(it)
+            userAdapter.setData(mViewModel.generateList())
             emptyView(it.isEmpty())
         })
-
         mViewModel.viewState.observe(viewLifecycleOwner, {
             mBinding.viewState.handleViewState(it.first, it.second)
         })
@@ -82,12 +84,19 @@ class ListFragment : Fragment(), OnItemClickCallback {
 
     private fun setupView() {
         userAdapter = UserAdapter {
-            if (it.isFavourite) {
+            val message = if (it.isFavourite) {
                 mViewModel.deleteUserFromFavourite(it)
+                getString(R.string.remove_from_favourite, it.username?.toUpperCase(Locale.ENGLISH))
             } else {
                 mViewModel.addUserToFavourite(it)
+                getString(R.string.add_to_favourite, it.username?.toUpperCase(Locale.ENGLISH))
             }
-            Toast.makeText(requireContext(), "Added", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                requireContext(),
+                message,
+                Toast.LENGTH_SHORT
+            )
+                .show()
         }
         userAdapter.setOnItemClickCallback(this)
         mBinding.apply {

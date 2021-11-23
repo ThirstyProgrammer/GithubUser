@@ -16,9 +16,6 @@ import id.bachtiar.harits.githubuser.databinding.FragmentListBinding
 import id.bachtiar.harits.githubuser.model.User
 import id.bachtiar.harits.githubuser.ui.detail.DetailFragment
 import id.bachtiar.harits.githubuser.util.Constant
-import id.bachtiar.harits.githubuser.widget.handleViewState
-import id.bachtiar.harits.githubuser.widget.setErrorMessage
-import id.bachtiar.harits.githubuser.widget.setOnRetakeClicked
 import kotlinx.serialization.ExperimentalSerializationApi
 
 @ExperimentalSerializationApi
@@ -42,11 +39,11 @@ class FavouriteFragment : Fragment(), OnItemClickCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()
-        mBinding.viewState.setOnRetakeClicked {
-//            mViewModel.getUsers()
-        }
-        handleViewModelObserver()
-//        mViewModel.getUsers()
+        mViewModel.getUsers().observe(viewLifecycleOwner, { users ->
+            val newList = users.map { it.mapToModel() }
+            userAdapter.setData(newList)
+            emptyView(newList.isEmpty())
+        })
     }
 
     override fun onItemClicked(data: User) {
@@ -63,31 +60,25 @@ class FavouriteFragment : Fragment(), OnItemClickCallback {
 
     fun getSearchUsername(username: String = "") {
         mViewModel.username = username
-//        mViewModel.getUsers()
-    }
-
-    private fun handleViewModelObserver() {
-        mViewModel.users.observe(viewLifecycleOwner, { users ->
-            val newList = users.map { it.mapToModel() }
-            userAdapter.setData(newList)
-            emptyView(newList.isEmpty())
-        })
-//        mViewModel.searchUsers.observe(viewLifecycleOwner, { users ->
-//            val newList = users.map { it.mapToModel() }
-//            userAdapter.setData(newList)
-//            emptyView(newList.isEmpty())
-//        })
-        mViewModel.viewState.observe(viewLifecycleOwner, {
-            mBinding.viewState.handleViewState(it.first, it.second)
-        })
-
-        mViewModel.error.observe(viewLifecycleOwner, {
-            mBinding.viewState.setErrorMessage(it)
-        })
+        if (username != "") {
+            mViewModel.getSearchUsers().observe(viewLifecycleOwner, { users ->
+                val newList = users.map { it.mapToModel() }
+                userAdapter.setData(newList)
+                emptyView(newList.isEmpty())
+            })
+        } else {
+            mViewModel.getUsers().observe(viewLifecycleOwner, { users ->
+                val newList = users.map { it.mapToModel() }
+                userAdapter.setData(newList)
+                emptyView(newList.isEmpty())
+            })
+        }
     }
 
     private fun setupView() {
-        userAdapter = UserAdapter()
+        userAdapter = UserAdapter(true) {
+            mViewModel.deleteUserFromFavourite(it)
+        }
         userAdapter.setOnItemClickCallback(this)
         mBinding.apply {
             val linearLayoutManager = LinearLayoutManager(requireContext())

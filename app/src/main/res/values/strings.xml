@@ -14,4 +14,6 @@
     <string name="empty_follower">Have no followers</string>
     <string name="empty_search_user">\"%1$s\" not found</string>
     <string name="favourite">Favorite</string>
+    <string name="add_to_favourite">%1$s Added to Favourite</string>
+    <string name="remove_from_favourite">%1$s Remove from Favourite</string>
 </resources>

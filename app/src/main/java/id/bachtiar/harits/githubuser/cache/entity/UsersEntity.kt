@@ -17,6 +17,7 @@ data class UsersEntity(
 
     fun mapToModel(): User {
         return User(
+            id = this.id,
             username = this.username,
             avatar = this.avatar,
             githubUrl = this.githubUrl,

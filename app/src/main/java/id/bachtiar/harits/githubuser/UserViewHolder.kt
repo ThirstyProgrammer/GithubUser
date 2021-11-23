@@ -10,7 +10,11 @@ import id.bachtiar.harits.githubuser.model.User
 class UserViewHolder constructor(private val binding: ItemUserBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(user: User, addToFavourite: ((user: User) -> Unit)? = null) {
+    fun bind(
+        user: User,
+        addOrRemoveFavourite: ((user: User) -> Unit)? = null,
+        isFromFavouritePage: Boolean
+    ) {
         binding.apply {
             val context = root.context
             Glide.with(context)
@@ -18,18 +22,26 @@ class UserViewHolder constructor(private val binding: ItemUserBinding) :
                 .into(imgItemPhoto)
             tvUsername.text = user.username
             tvGithubUrl.text = user.githubUrl
-            setupFavourite(user, addToFavourite)
+            setupFavourite(user, addOrRemoveFavourite, isFromFavouritePage)
         }
     }
 
-    private fun setupFavourite(user: User, addToFavourite: ((user: User) -> Unit)? = null) {
+    private fun setupFavourite(
+        user: User,
+        addOrRemoveFavourite: ((user: User) -> Unit)? = null,
+        isFromFavouritePage: Boolean
+    ) {
         binding.apply {
-            if (addToFavourite == null) {
+            if (addOrRemoveFavourite == null) {
                 btnFavourite.visibility = View.GONE
             } else {
                 btnFavourite.visibility = View.VISIBLE
                 val drawable =
-                    if (user.isFavourite) R.drawable.ic_favourite_filled else R.drawable.ic_favourite_outlined
+                    when {
+                        isFromFavouritePage -> R.drawable.ic_delete
+                        user.isFavourite -> R.drawable.ic_favourite_filled
+                        else -> R.drawable.ic_favourite_outlined
+                    }
                 btnFavourite.setImageDrawable(
                     ContextCompat.getDrawable(
                         binding.root.context,
@@ -37,7 +49,7 @@ class UserViewHolder constructor(private val binding: ItemUserBinding) :
                     )
                 )
                 btnFavourite.setOnClickListener {
-                    addToFavourite(user)
+                    addOrRemoveFavourite(user)
                 }
             }
         }
