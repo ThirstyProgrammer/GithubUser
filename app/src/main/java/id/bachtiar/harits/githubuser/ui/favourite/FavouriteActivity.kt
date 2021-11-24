@@ -102,16 +102,18 @@ class FavouriteActivity : AppCompatActivity() {
         searchEditText.setHintTextColor(ContextCompat.getColor(this, R.color.color_primary_light))
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                val favouriteFragment =
-                    supportFragmentManager.findFragmentById(R.id.frame_container) as FavouriteFragment
-                favouriteFragment.getSearchUsername(query.defaultEmpty())
+                when (val fragment = supportFragmentManager.findFragmentById(R.id.frame_container)) {
+                    is FavouriteFragment -> fragment.getSearchUsername(query.defaultEmpty())
+                    else -> Unit
+                }
                 return true
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
-                val favouriteFragment =
-                    supportFragmentManager.findFragmentById(R.id.frame_container) as FavouriteFragment
-                favouriteFragment.getSearchUsername(query.defaultEmpty())
+                when (val fragment = supportFragmentManager.findFragmentById(R.id.frame_container)) {
+                    is FavouriteFragment -> fragment.getSearchUsername(query.defaultEmpty())
+                    else -> Unit
+                }
                 return false
             }
 
